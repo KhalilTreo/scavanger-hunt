@@ -1,0 +1,3 @@
+# Keep search engines from indexing level pages (players could skip ahead)
+User-agent: *
+Disallow: /l/

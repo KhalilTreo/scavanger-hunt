@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{gameTitle}}</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <span class="logo">{{gameTitle}}</span>
+    <span class="level-num">an online riddle</span>
+  </header>
+  <main>
+    <h1>{{gameTitle}}</h1>
+    <img src="assets/spaceship_interior.jpg" alt="A spaceship'sSdoor">
+    <p>Each level is a page. Each page hides an answer.</p>
+    <p class="hint">Look closely. Look everywhere. The page is more than what it shows.</p>
+    <div class="home-links">
+      <a class="button" href="{{startUrl}}">Begin</a>
+      <a class="button" id="continue" href="#" hidden>Continue</a>
+    </div>
+  </main>
+  <script>
+    try {
+      const last = localStorage.getItem('riddle-last');
+      if (last) { const c = document.getElementById('continue'); c.href = last; c.hidden = false; }
+    } catch (_) {}
+  </script>
+</body>
+</html>

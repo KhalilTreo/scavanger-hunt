@@ -1,0 +1,6 @@
+{
+  "title": "Keyhole",
+  "salt": "change-this-to-something-random-before-launch",
+  "hashUrls": true,
+  "startKey": "start"
+}
