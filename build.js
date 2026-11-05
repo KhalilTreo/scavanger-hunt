@@ -47,7 +47,7 @@ const fill = (tpl, vars) => tpl.replace(/{{(\w+)}}/g, (_, k) => (k in vars ? var
 
 const FORM = `<form id="answer-form" autocomplete="off">
     <input name="answer" placeholder="Your answer" aria-label="Answer" autofocus>
-    <button type="submit">Go</button>
+    <button type="submit">Submit</button>
     <p id="feedback" role="status"></p>
   </form>`;
 

@@ -1,13 +1,13 @@
-# Keyhole — online riddle starter
+# Keyhole(Title TBD) — online riddle game
 
-A static-site starter for a Cipher/NotPr0n-style online riddle: each level is a page,
+A static-site starter for a Cipher online riddle: each level is a page,
 and the answer to one level is the address of the next.
 
 ## Build
 
     node build.js        # writes the playable site to dist/
 
-The build prints a level map (file → URL → answer) for you. Nothing in `dist/` contains answers.
+Run `node build.js` in the command line. The build prints a level map (file → URL → answer) for you. Nothing in `dist/` contains answers.
 
 ## Adding a level
 
@@ -49,4 +49,5 @@ page at `404.html`.
     src/win.html          final page
     src/index.html        landing page (Begin / Continue)
     src/game.js           answer form → next URL
+    src/assets            images and audio
     src/style.css
