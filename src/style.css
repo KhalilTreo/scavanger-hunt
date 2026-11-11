@@ -50,3 +50,13 @@ a { color: var(--accent); }
 #feedback { flex-basis: 100%; text-align: center; color: var(--muted); min-height: 1.6em; margin: 4px 0 0; }
 .home-links { display: flex; gap: 16px; justify-content: center; margin-top: 32px; }
 .button { display: inline-block; padding: 10px 24px; border: 1px solid var(--accent); border-radius: 4px; text-decoration: none; }
+/* Standard size for level pictures */
+.level-img {
+  display: block;
+  width: 100%;
+  max-width: 600px;      /* never wider than this */
+  aspect-ratio: 4 / 3;   /* same shape every time */
+  object-fit: cover;     /* fill that shape, trimming edges if needed */
+  margin: 24px auto;     /* centered, with space above and below */
+  border-radius: 6px;
+}
