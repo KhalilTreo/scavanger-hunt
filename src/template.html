@@ -6,17 +6,19 @@
   <meta name="robots" content="noindex, nofollow">
   <title>{{gameTitle}} | Level {{number}}</title>
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../suits.css">
 </head>
 <body data-level="{{number}}" data-salt="{{salt}}" data-hash="{{hash}}">
   <header>
     <a href="../index.html" class="logo">{{gameTitle}}</a>
-    <span class="level-num">Level {{number}}</span>
+    <span class="level-num">Level {{number}}<span id="suit-badge"></span></span>
   </header>
   <main>
     <h1>{{title}}</h1>
 {{content}}
   </main>
   {{form}}
+  <script src="../suits.js"></script>
   <script src="../game.js"></script>
 </body>
 </html>

@@ -5,23 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{gameTitle}}</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="suits.css">
 </head>
-<body>
+<body class="start">
   <header>
     <span class="logo">{{gameTitle}}</span>
     <span class="level-num">an online riddle</span>
   </header>
   <main>
     <h1>{{gameTitle}}</h1>
-    <img src="assets/spaceship_interior.jpg" alt="A spaceship'sSdoor">
     <p>Each level is a page. Each page hides an answer.</p>
-    <p class="hint">Look closely. Look everywhere. The page is more than what it shows.</p>
+    <p class="hint">Suit up. Look closely. The page is more than what it shows.</p>
+
+    <fieldset class="suit-picker">
+      <legend>Choose your suit</legend>
+      <div class="suit-grid" id="suit-grid"><!-- filled in by the script below --></div>
+    </fieldset>
+    <p id="chosen" role="status"></p>
+
     <div class="home-links">
       <a class="button" href="{{startUrl}}">Begin</a>
       <a class="button" id="continue" href="#" hidden>Continue</a>
     </div>
   </main>
+
+  <script src="suits.js"></script>
   <script>
+    // Build one radio card per suit from the SUITS list in suits.js
+    const grid = document.getElementById('suit-grid');
+    const chosen = document.getElementById('chosen');
+    const current = getSuit() || SUITS[0];
+
+    grid.innerHTML = SUITS.map((s) => `
+      <label class="suit">
+        <input type="radio" name="suit" value="${s.id}" ${s.id === current.id ? 'checked' : ''}>
+        <span class="card">
+          ${suitImg(s)}
+          <span class="name">${s.name}</span>
+          <span class="blurb">${s.blurb}</span>
+        </span>
+      </label>`).join('');
+
+    function pick(id) {
+      saveSuit(id);
+      chosen.textContent = SUITS.find((s) => s.id === id).name + ' suit equipped.';
+    }
+    pick(current.id); // save the default so levels always have a suit
+
+    grid.addEventListener('change', (e) => pick(e.target.value));
+
+    // Continue button (unchanged from before)
     try {
       const last = localStorage.getItem('riddle-last');
       if (last) { const c = document.getElementById('continue'); c.href = last; c.hidden = false; }

@@ -1,0 +1,65 @@
+/* Suit picker (start page) and suit badge (level headers).
+   Uses the color variables defined in style.css. */
+
+/* Starfield behind the start page */
+body.start {
+  background:
+    radial-gradient(1px 1px at 12% 18%, #fff8 50%, transparent 51%),
+    radial-gradient(1px 1px at 78% 12%, #fff9 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 42% 64%, #fff6 50%, transparent 51%),
+    radial-gradient(1px 1px at 88% 72%, #fff8 50%, transparent 51%),
+    radial-gradient(1px 1px at 22% 86%, #fff7 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 60% 30%, #fff5 50%, transparent 51%),
+    radial-gradient(ellipse at 50% 120%, #1b2440 0%, transparent 60%),
+    var(--bg);
+}
+
+.suit-picker { border: 0; margin: 32px 0 0; padding: 0; }
+.suit-picker legend {
+  width: 100%; text-align: center; margin-bottom: 16px;
+  color: var(--muted); letter-spacing: .2em; text-transform: uppercase; font-size: 13px;
+}
+.suit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px;
+}
+
+/* Each suit is a radio button wrapped in a label; the real input is
+   invisible but still focusable, so keyboard arrows still work. */
+.suit { position: relative; display: block; cursor: pointer; }
+.suit input { position: absolute; opacity: 0; pointer-events: none; }
+.suit .card {
+  display: block;
+  height: 100%;
+  border: 1px solid var(--line); border-radius: 10px;
+  padding: 16px 12px 14px;
+  background: #ffffff05;
+  transition: transform .15s, border-color .15s, background .15s;
+}
+.suit .card img { width: 96px; height: 128px; object-fit: contain; display: block; margin: 0 auto 10px; }
+.suit .name { display: block; font-size: 16px; letter-spacing: .05em; }
+.suit .blurb { display: block; color: var(--muted); font-size: 13px; line-height: 1.4; margin-top: 4px; }
+
+.suit:hover .card { border-color: var(--muted); }
+.suit input:checked + .card {
+  border-color: var(--accent);
+  background: #c9a24a14;
+  transform: translateY(-3px);
+}
+.suit input:checked + .card img { animation: float 2.4s ease-in-out infinite; }
+.suit input:focus-visible + .card { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .suit input:checked + .card img { animation: none; }
+  .suit .card { transition: none; }
+}
+
+#chosen { color: var(--muted); min-height: 1.6em; margin-top: 20px; }
+
+/* Small suit icon in the level header */
+#suit-badge img { width: 24px; height: 32px; object-fit: contain; vertical-align: middle; margin-left: 8px; }
