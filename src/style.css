@@ -60,3 +60,16 @@ a { color: var(--accent); }
   margin: 24px auto;     /* centered, with space above and below */
   border-radius: 6px;
 }
+/* Music toggle (the button is added by audio.js) */
+header { gap: 12px; align-items: center; }
+header .logo { margin-right: auto; }
+#audio-toggle {
+  display: grid; place-items: center;
+  width: 34px; height: 34px; padding: 0; flex-shrink: 0;
+  background: transparent; color: var(--muted);
+  border: 1px solid var(--line); border-radius: 50%;
+  cursor: pointer;
+}
+#audio-toggle:hover { color: var(--fg); border-color: var(--muted); }
+#audio-toggle[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
+#audio-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }

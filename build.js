@@ -111,7 +111,7 @@ fs.writeFileSync(
   path.join(OUT, 'index.html'),
   fill(fs.readFileSync(path.join(SRC, 'index.html'), 'utf8'), { ...common, startUrl })
 );
-for (const f of ['style.css', 'game.js', '404.html', 'robots.txt', 'suits.js', 'suits.css']) {
+for (const f of ['style.css', 'game.js', '404.html', 'robots.txt', 'suits.js', 'suits.css', "audio.js"]) {
   fs.copyFileSync(path.join(SRC, f), path.join(OUT, f));
 }
 console.log(`Built ${levels.length} levels into dist/`);

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 340" width="680" height="680">
+  <style>
+    .sweep { animation: sweep 4s linear infinite; }
+    @keyframes sweep { from { transform: translateY(0); } to { transform: translateY(360px); } }
+    @media (prefers-reduced-motion: reduce) { .sweep { animation: none; display: none; } .ping { display: none; } }
+  </style>
+  <defs>
+    <pattern id="minor" x="20" y="20" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M30 0H0V30" fill="none" stroke="#4cf0ff" stroke-opacity=".16" stroke-width="1"/>
+    </pattern>
+    <pattern id="major" x="20" y="20" width="150" height="150" patternUnits="userSpaceOnUse">
+      <path d="M150 0H0V150" fill="none" stroke="#4cf0ff" stroke-opacity=".32" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="screen" cx="50%" cy="50%" r="70%">
+      <stop offset="0" stop-color="#0b2430"/>
+      <stop offset="1" stop-color="#050b10"/>
+    </radialGradient>
+    <linearGradient id="sweepFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4cf0ff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#4cf0ff" stop-opacity=".12"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="inside"><rect x="20" y="20" width="300" height="300"/></clipPath>
+  </defs>
+
+  <rect x="20" y="20" width="300" height="300" fill="url(#screen)"/>
+  <rect x="20" y="20" width="300" height="300" fill="url(#minor)"/>
+  <rect x="20" y="20" width="300" height="300" fill="url(#major)"/>
+  <rect x="20" y="20" width="300" height="300" fill="none" stroke="#4cf0ff" stroke-opacity=".32"/>
+
+  <g clip-path="url(#inside)">
+    <rect class="sweep" x="20" y="-40" width="300" height="60" fill="url(#sweepFill)"/>
+  </g>
+
+  <g stroke="#4cf0ff" stroke-width="2" stroke-linecap="round" filter="url(#glow)">
+    <line x1="20" y1="320" x2="20" y2="20"/>
+    <line x1="20" y1="320" x2="320" y2="320"/>
+  </g>
+
+  <g fill="none" stroke="#4cf0ff" stroke-opacity=".7" stroke-width="2">
+    <path d="M6 26V6h20"/>
+    <path d="M314 6h20v20"/>
+    <path d="M334 314v20h-20"/>
+    <path d="M26 334H6v-20"/>
+  </g>
+
+  <g filter="url(#glow)">
+    <circle class="ping" cx="230" cy="200" r="6" fill="none" stroke="#ff5a7a" stroke-width="2">
+      <animate attributeName="r" values="6;22" dur="1.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0" dur="1.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="230" cy="200" r="5" fill="#ff5a7a"/>
+    <circle cx="230" cy="200" r="2" fill="#fff"/>
+  </g>
+</svg>
