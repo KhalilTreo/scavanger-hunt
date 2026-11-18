@@ -1,9 +1,9 @@
 :root {
   --bg: #210535;
-  --fg: #420d4a;
+  --fg: #ffffff;
   --muted: #7a808a;
   --accent: #c774b2;
-  --line: #ffffff;
+  --line: #5f0c7d;
 }
 * { box-sizing: border-box; }
 body {
@@ -89,3 +89,40 @@ header .logo { margin-right: auto; }
 .hotspot:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 6px; }
 .hotspot.flip img { scale: -1 1; }
 @media (prefers-reduced-motion: reduce) { .hotspot img { transition: none; } }
+
+/* Wrong-answer pop-up (built by game.js) */
+#popup {
+  width: min(360px, calc(100vw - 32px));
+  padding: 28px 24px 22px; text-align: center;
+  background: #0b141b; color: var(--fg);
+  border: 1px solid #4cf0ff66; border-radius: 10px;
+  box-shadow: 0 0 0 1px #000, 0 0 40px #4cf0ff22;
+}
+#popup::backdrop { background: #000a; backdrop-filter: blur(2px); }
+#popup[open] { animation: popup-in .18s ease-out; }
+@keyframes popup-in { from { opacity: 0; transform: scale(.94); } }
+.popup-title {
+  margin: 0 0 8px; color: #ff5a7a;
+  font: 13px/1.4 'Courier New', monospace; letter-spacing: .3em; text-transform: uppercase;
+}
+.popup-msg { margin: 0 0 20px; font-size: 18px; }
+.popup-btn {
+  background: var(--accent); color: var(--bg); border: 0; border-radius: 4px;
+  padding: 10px 24px; font: inherit; cursor: pointer;
+}
+.popup-btn:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { #popup[open] { animation: none; } }
+
+/* Click-to-reveal hints */
+.hint-box { max-width: 480px; margin: 24px auto 0; color: var(--muted); }
+.hint-box summary {
+  display: inline-block; cursor: pointer; list-style: none;
+  font: 13px/1.4 'Courier New', monospace; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--accent); padding: 6px 12px; border: 1px dashed var(--line); border-radius: 4px;
+}
+.hint-box summary::-webkit-details-marker { display: none; }
+.hint-box summary::before { content: '+ '; }
+.hint-box[open] summary::before { content: '− '; }
+.hint-box summary:hover { border-color: var(--accent); }
+.hint-box summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.hint-box p { margin: 12px 0 0; font-style: italic; }
