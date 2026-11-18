@@ -1,9 +1,9 @@
 :root {
-  --bg: #0d0f12;
-  --fg: #d8dbe0;
+  --bg: #210535;
+  --fg: #420d4a;
   --muted: #7a808a;
-  --accent: #c9a24a;
-  --line: #262a31;
+  --accent: #c774b2;
+  --line: #ffffff;
 }
 * { box-sizing: border-box; }
 body {
@@ -73,3 +73,19 @@ header .logo { margin-right: auto; }
 #audio-toggle:hover { color: var(--fg); border-color: var(--muted); }
 #audio-toggle[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
 #audio-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Clickable scenes: a backdrop image with clickable things placed on top */
+.scene {
+  position: relative; border-radius: 8px; overflow: hidden; margin: 24px 0 0;
+  width: min(1000px, calc(100vw - 32px)); left: 50%; transform: translateX(-50%);
+}
+.scene .backdrop { display: block; width: 100%; height: auto; }
+.hotspot {
+  position: absolute; padding: 0; border: 0; background: none;
+  cursor: pointer; line-height: 0;
+}
+.hotspot img { display: block; width: 100%; height: auto; transition: transform .2s ease; }
+.hotspot:hover img { transform: translateY(-4%); }
+.hotspot:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 6px; }
+.hotspot.flip img { scale: -1 1; }
+@media (prefers-reduced-motion: reduce) { .hotspot img { transition: none; } }

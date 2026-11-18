@@ -89,7 +89,7 @@ levels.forEach((lv, i) => {
     number: String(i + 1),
     title: lv.meta.title || `Level ${i + 1}`,
     content: lv.body,
-    form: FORM,
+    form: lv.meta.form === 'off' ? '' : FORM,
   });
   const url = writePage(prevKeys, html, lv.file);
   console.log(`  ${String(i + 1).padStart(3)}  ${lv.file.padEnd(20)} l/${url}   answer: ${lv.meta.answers.join(' | ')}`);
